@@ -8,6 +8,8 @@ import { LanguageProvider } from "@/context/LanguageContext";
 import { LanguageSelector } from "@/components/layout/LanguageSelector";
 import { AuthProvider } from "@/context/AuthContext";
 import Notification from '@/components/Notification'
+import { Toaster } from 'react-hot-toast'
+import Script from 'next/script'
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,6 +25,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="de">
+      <head>
+        <Script 
+          src="https://consenttool.haendlerbund.de/app.js?apiKey=9839945bd4139c13c4c127c7f8bac39c91ce514126701d28&amp;domain=1748ed7" 
+          referrerPolicy="origin"
+          strategy="afterInteractive"
+        />
+      </head>
       <body className={`${inter.className} bg-[#F5F5F3] text-black`}>
         <AuthProvider>
           <LanguageProvider>
@@ -37,6 +46,7 @@ export default function RootLayout({
               <Footer />
               <CookieBanner />
               <Notification />
+              <Toaster position="bottom-right" />
             </div>
           </LanguageProvider>
         </AuthProvider>

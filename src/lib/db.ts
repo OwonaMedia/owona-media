@@ -1,43 +1,41 @@
 import mongoose from 'mongoose'
 
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/owona-media'
+const MONGODB_URI = process.env.MONGODB_URI as string
 
 if (!MONGODB_URI) {
   throw new Error(
-    'Please define the MONGODB_URI environment variable inside .env.local'
+    'Please define the MONGODB_URI environment variable inside .env.production'
   )
 }
 
-let cached = global.mongoose
-
-if (!cached) {
-  cached = global.mongoose = { conn: null, promise: null }
-}
+let isConnected = false
 
 export async function connectDB() {
-  if (cached.conn) {
-    return cached.conn
-  }
-
-  if (!cached.promise) {
-    const opts = {
-      bufferCommands: false,
-    }
-
-    cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
-      return mongoose
-    })
+  if (isConnected) {
+    console.log('MongoDB is already connected')
+    return
   }
 
   try {
-    cached.conn = await cached.promise
-  } catch (e) {
-    cached.promise = null
-    throw e
+    await mongoose.connect(MONGODB_URI, {
+      serverSelectionTimeoutMS: 5000,
+      socketTimeoutMS: 45000,
+      connectTimeoutMS: 10000,
+      maxPoolSize: 10,
+      minPoolSize: 5,
+      retryWrites: true,
+      w: 'majority',
+      appName: 'Cluster0'
+    })
+    isConnected = true
+    console.log('MongoDB connected successfully')
+  } catch (error) {
+    console.error('Error connecting to MongoDB:', error)
+    throw error
   }
-
-  return cached.conn
 }
+
+export { connectDB as default }
 
 export async function dbConnect() {
   try {

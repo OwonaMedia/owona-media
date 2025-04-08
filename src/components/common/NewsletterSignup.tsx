@@ -3,7 +3,11 @@
 import { useState } from 'react'
 import { useLanguage } from '@/context/LanguageContext'
 
-export default function NewsletterSignup() {
+interface NewsletterSignupProps {
+  variant?: 'default' | 'checkout'
+}
+
+export default function NewsletterSignup({ variant = 'default' }: NewsletterSignupProps) {
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const { t } = useLanguage()
@@ -22,8 +26,12 @@ export default function NewsletterSignup() {
     }
   }
 
+  const containerClasses = variant === 'checkout' 
+    ? 'bg-white p-4 rounded-lg border border-amber-200'
+    : 'bg-amber-50 p-6 rounded-lg shadow-md'
+
   return (
-    <div className="bg-amber-50 p-6 rounded-lg shadow-md">
+    <div className={containerClasses}>
       <h3 className="text-xl font-semibold text-amber-900 mb-4">
         {t('newsletter_title')}
       </h3>

@@ -50,14 +50,16 @@ export type TranslationKey =
   | 'social_media'
   | 'web_design'
   | 'seo'
+  | 'seo_description'
   | 'content_marketing'
   | 'contact'
   | 'support'
   | 'login'
   | 'register'
   | 'web_design_description'
-  | 'seo_description'
-  | 'content_marketing_description'
+  | 'keyword_research'
+  | 'onpage_optimization'
+  | 'technical_seo'
   | 'contact_us'
   | 'name'
   | 'message'
@@ -92,6 +94,39 @@ export type TranslationKey =
   | 'film_production'
   | 'film_production_description'
   | 'social_media_description'
+  | 'cookies'
+  | 'cookie_intro'
+  | 'what_are_cookies'
+  | 'cookies_explanation'
+  | 'how_we_use_cookies'
+  | 'cookie_usage'
+  | 'cookie_types'
+  | 'essential_cookies'
+  | 'analytics_cookies'
+  | 'manage_cookies'
+  | 'cookie_management'
+  | 'more_info'
+  | 'contact_for_info'
+  | 'our_services'
+  | 'content_strategy'
+  | 'content_creation'
+  | 'content_distribution'
+  | 'benefits'
+  | 'increased_visibility'
+  | 'better_engagement'
+  | 'higher_conversion'
+  | 'corporate_videos'
+  | 'product_videos'
+  | 'event_coverage'
+  | 'professional_quality'
+  | 'brand_storytelling'
+  | 'emotional_connection'
+  | 'content_marketing_description'
+  | 'social_strategy'
+  | 'community_management'
+  | 'responsive_design'
+  | 'user_experience'
+  | 'web_development'
 
 const baseTranslations: Record<TranslationKey, string> = {
   home: '',
@@ -184,7 +219,42 @@ const baseTranslations: Record<TranslationKey, string> = {
   reload_page: '',
   film_production: '',
   film_production_description: '',
-  social_media_description: ''
+  social_media_description: '',
+  cookies: '',
+  cookie_intro: '',
+  what_are_cookies: '',
+  cookies_explanation: '',
+  how_we_use_cookies: '',
+  cookie_usage: '',
+  cookie_types: '',
+  essential_cookies: '',
+  analytics_cookies: '',
+  manage_cookies: '',
+  cookie_management: '',
+  more_info: '',
+  contact_for_info: '',
+  our_services: '',
+  content_strategy: '',
+  content_creation: '',
+  content_distribution: '',
+  benefits: '',
+  increased_visibility: '',
+  better_engagement: '',
+  higher_conversion: '',
+  corporate_videos: '',
+  product_videos: '',
+  event_coverage: '',
+  professional_quality: '',
+  brand_storytelling: '',
+  emotional_connection: '',
+  keyword_research: '',
+  onpage_optimization: '',
+  technical_seo: '',
+  social_strategy: '',
+  community_management: '',
+  responsive_design: '',
+  user_experience: '',
+  web_development: ''
 }
 
 export const translations: Record<Language, Record<TranslationKey, string>> = {
@@ -237,14 +307,14 @@ export const translations: Record<Language, Record<TranslationKey, string>> = {
     categories: 'Kategorien',
     social_media: 'Social Media',
     web_design: 'Web Design',
-    seo: 'Suchmaschinenoptimierung',
+    seo: 'Suchmaschinenoptimierung (SEO)',
     content_marketing: 'Content Marketing',
     contact: 'Kontakt',
     support: 'Support',
     login: 'Anmelden',
     register: 'Registrieren',
     web_design_description: 'Professionelle und responsive Websites für Ihr Unternehmen.',
-    seo_description: 'Verbessern Sie Ihre Sichtbarkeit in Suchmaschinen.',
+    seo_description: 'Unsere SEO-Dienstleistungen helfen Ihnen, Ihre Online-Sichtbarkeit zu verbessern und mehr organischen Traffic zu generieren.',
     content_marketing_description: 'Erstellen Sie ansprechende Inhalte für Ihre Zielgruppe.',
     contact_us: 'Kontaktieren Sie uns',
     name: 'Name',
@@ -278,8 +348,24 @@ export const translations: Record<Language, Record<TranslationKey, string>> = {
     error_description: 'Entschuldigung, es ist ein unerwarteter Fehler aufgetreten. Bitte versuchen Sie es später erneut.',
     reload_page: 'Seite neu laden',
     film_production: 'Filmproduktion',
-    film_production_description: 'Professionelle Filmproduktion für Ihr Unternehmen',
-    social_media_description: 'Social Media Marketing für Ihre Marke'
+    film_production_description: 'Ob Imagefilm, Werbespot, Produktclip oder Recruiting-Video – wir sind Ihre Profis für Filmproduktion.',
+    social_media_description: 'Social Media Marketing für Ihre Marke',
+    our_services: 'Unsere Leistungen',
+    corporate_videos: 'Imagefilme',
+    product_videos: 'Produktvideos',
+    event_coverage: 'Event-Dokumentation',
+    professional_quality: 'Professionelle Qualität',
+    brand_storytelling: 'Markenstorytelling',
+    emotional_connection: 'Emotionale Verbindung',
+    contact_for_info: 'Kontaktieren Sie uns für weitere Informationen',
+    keyword_research: 'Keyword-Recherche und -Optimierung',
+    onpage_optimization: 'On-Page-Optimierung',
+    technical_seo: 'Technische SEO-Analyse',
+    social_strategy: 'Social Media Strategie-Entwicklung',
+    community_management: 'Community Management',
+    responsive_design: 'Responsive Webdesign',
+    user_experience: 'UI/UX-Design',
+    web_development: 'Web-Entwicklung'
   },
   en: {
     ...baseTranslations,
@@ -330,14 +416,14 @@ export const translations: Record<Language, Record<TranslationKey, string>> = {
     categories: 'Categories',
     social_media: 'Social Media',
     web_design: 'Web Design',
-    seo: 'Search Engine Optimization',
+    seo: 'Search Engine Optimization (SEO)',
     content_marketing: 'Content Marketing',
     contact: 'Contact',
     support: 'Support',
     login: 'Login',
     register: 'Register',
     web_design_description: 'Professional and responsive websites for your business.',
-    seo_description: 'Improve your visibility in search engines.',
+    seo_description: 'Our SEO services help you improve your online visibility and generate more organic traffic.',
     content_marketing_description: 'Create engaging content for your target audience.',
     contact_us: 'Contact Us',
     name: 'Name',
@@ -371,8 +457,25 @@ export const translations: Record<Language, Record<TranslationKey, string>> = {
     error_description: 'Sorry, an unexpected error has occurred. Please try again later.',
     reload_page: 'Reload page',
     film_production: 'Film Production',
-    film_production_description: 'Professional film production for your business',
-    social_media_description: 'Social Media Marketing for Your Brand'
+    film_production_description: 'Whether it\'s a corporate video, commercial, product clip or recruiting video – we are your experts for film production.',
+    social_media_description: 'Social Media Marketing for Your Brand',
+    our_services: 'Our Services',
+    corporate_videos: 'Corporate Videos',
+    product_videos: 'Product Videos',
+    event_coverage: 'Event Coverage',
+    benefits: 'Benefits',
+    professional_quality: 'Professional Quality',
+    brand_storytelling: 'Brand Storytelling',
+    emotional_connection: 'Emotional Connection',
+    contact_for_info: 'Contact us for more information',
+    keyword_research: 'Keyword Research and Optimization',
+    onpage_optimization: 'On-Page Optimization',
+    technical_seo: 'Technical SEO Analysis',
+    social_strategy: 'Social Media Strategy Development',
+    community_management: 'Community Management',
+    responsive_design: 'Responsive Web Design',
+    user_experience: 'UI/UX Design',
+    web_development: 'Web Development'
   },
   fr: {
     ...baseTranslations,
@@ -465,7 +568,15 @@ export const translations: Record<Language, Record<TranslationKey, string>> = {
     reload_page: 'Recharger la page',
     film_production: 'Production de Films',
     film_production_description: 'Production de films professionnelle pour votre entreprise',
-    social_media_description: 'Marketing de médias sociaux pour votre marque'
+    social_media_description: 'Marketing de médias sociaux pour votre marque',
+    our_services: 'Unsere Leistungen',
+    corporate_videos: 'Imagefilme',
+    product_videos: 'Produktvideos',
+    event_coverage: 'Event-Dokumentation',
+    professional_quality: 'Professionelle Qualität',
+    brand_storytelling: 'Markenstorytelling',
+    emotional_connection: 'Emotionale Verbindung',
+    contact_for_info: 'Bei Fragen kontaktieren Sie uns bitte.'
   },
   es: {
     ...baseTranslations,
@@ -558,7 +669,15 @@ export const translations: Record<Language, Record<TranslationKey, string>> = {
     reload_page: 'Recargar página',
     film_production: 'Producción Cinematográfica',
     film_production_description: 'Producción cinematográfica profesional para la tua empresa',
-    social_media_description: 'Marketing de médias sociaux pour votre marque'
+    social_media_description: 'Marketing de médias sociaux pour votre marque',
+    our_services: 'Unsere Leistungen',
+    corporate_videos: 'Imagefilme',
+    product_videos: 'Produktvideos',
+    event_coverage: 'Event-Dokumentation',
+    professional_quality: 'Professionelle Qualität',
+    brand_storytelling: 'Markenstorytelling',
+    emotional_connection: 'Emotionale Verbindung',
+    contact_for_info: 'Bei Fragen kontaktieren Sie uns bitte.'
   },
   it: {
     ...baseTranslations,
@@ -583,7 +702,7 @@ export const translations: Record<Language, Record<TranslationKey, string>> = {
     necessary_cookies: 'Cookie necessari',
     necessary_cookies_description: 'Questi cookie sono necessari per il funzionamento di base del sito.',
     preference_cookies: 'Cookie di preferenza',
-    preference_cookies_description: 'Questi cookie memorizzano le tue preferenze e impostazioni.',
+    preference_cookies_description: 'Questi cookies memorizzano le tue preferenze e impostazioni.',
     statistics_cookies: 'Cookie statistici',
     statistics_cookies_description: 'Questi cookies ci aiutano a capire l\'utilizzo del sito.',
     marketing_cookies: 'Cookie di marketing',
@@ -651,7 +770,15 @@ export const translations: Record<Language, Record<TranslationKey, string>> = {
     reload_page: 'Ricarica la pagina',
     film_production: 'Produzione Cinematografica',
     film_production_description: 'Produzione cinematografica professionale per la tua azienda',
-    social_media_description: 'Marketing de médias sociaux pour votre marque'
+    social_media_description: 'Marketing de médias sociaux pour votre marque',
+    our_services: 'Unsere Leistungen',
+    corporate_videos: 'Imagefilme',
+    product_videos: 'Produktvideos',
+    event_coverage: 'Event-Dokumentation',
+    professional_quality: 'Professionelle Qualität',
+    brand_storytelling: 'Markenstorytelling',
+    emotional_connection: 'Emotionale Verbindung',
+    contact_for_info: 'Bei Fragen kontaktieren Sie uns bitte.'
   },
   pt: {
     ...baseTranslations,
@@ -744,7 +871,15 @@ export const translations: Record<Language, Record<TranslationKey, string>> = {
     reload_page: 'Recarregar página',
     film_production: 'Produção Cinematográfica',
     film_production_description: 'Produção cinematográfica profissional para a sua empresa',
-    social_media_description: 'Marketing de médias sociaux pour votre marque'
+    social_media_description: 'Marketing de médias sociaux pour votre marque',
+    our_services: 'Unsere Leistungen',
+    corporate_videos: 'Imagefilme',
+    product_videos: 'Produktvideos',
+    event_coverage: 'Event-Dokumentation',
+    professional_quality: 'Professionelle Qualität',
+    brand_storytelling: 'Markenstorytelling',
+    emotional_connection: 'Emotionale Verbindung',
+    contact_for_info: 'Bei Fragen kontaktieren Sie uns bitte.'
   },
   nl: {
     ...baseTranslations,
@@ -837,7 +972,15 @@ export const translations: Record<Language, Record<TranslationKey, string>> = {
     reload_page: 'Pagina vernieuwen',
     film_production: 'Filmproduktion',
     film_production_description: 'Professionelle Filmproduktion für Ihr Unternehmen',
-    social_media_description: 'Marketing de médias sociaux pour votre marque'
+    social_media_description: 'Marketing de médias sociaux pour votre marque',
+    our_services: 'Unsere Leistungen',
+    corporate_videos: 'Imagefilme',
+    product_videos: 'Produktvideos',
+    event_coverage: 'Event-Dokumentation',
+    professional_quality: 'Professionelle Qualität',
+    brand_storytelling: 'Markenstorytelling',
+    emotional_connection: 'Emotionale Verbindung',
+    contact_for_info: 'Bei Fragen kontaktieren Sie uns bitte.'
   },
   pl: {
     ...baseTranslations,
@@ -930,7 +1073,15 @@ export const translations: Record<Language, Record<TranslationKey, string>> = {
     reload_page: 'Recargar página',
     film_production: 'Produkcja Filmowa',
     film_production_description: 'Profesjonalna Produkcja Filmowa dla Twojej Firmy',
-    social_media_description: 'Marketing de médias sociaux pour votre marque'
+    social_media_description: 'Marketing de médias sociaux pour votre marque',
+    our_services: 'Unsere Leistungen',
+    corporate_videos: 'Imagefilme',
+    product_videos: 'Produktvideos',
+    event_coverage: 'Event-Dokumentation',
+    professional_quality: 'Professionelle Qualität',
+    brand_storytelling: 'Markenstorytelling',
+    emotional_connection: 'Emotionale Verbindung',
+    contact_for_info: 'Bei Fragen kontaktieren Sie uns bitte.'
   },
   ru: {
     ...baseTranslations,
@@ -1023,7 +1174,15 @@ export const translations: Record<Language, Record<TranslationKey, string>> = {
     reload_page: 'Перезагрузить страницу',
     film_production: 'Кинопроизводство',
     film_production_description: 'Профессиональное кинопроизводство для вашего бизнеса',
-    social_media_description: 'Marketing de médias sociaux pour votre marque'
+    social_media_description: 'Marketing de médias sociaux pour votre marque',
+    our_services: 'Unsere Leistungen',
+    corporate_videos: 'Imagefilme',
+    product_videos: 'Produktvideos',
+    event_coverage: 'Event-Dokumentation',
+    professional_quality: 'Professionelle Qualität',
+    brand_storytelling: 'Markenstorytelling',
+    emotional_connection: 'Emotionale Verbindung',
+    contact_for_info: 'Bei Fragen kontaktieren Sie uns bitte.'
   },
   tr: {
     ...baseTranslations,
@@ -1116,6 +1275,14 @@ export const translations: Record<Language, Record<TranslationKey, string>> = {
     reload_page: 'Sayfayı yenile',
     film_production: 'Film Üretimi',
     film_production_description: 'Profesyonel Film Üretimi için',
-    social_media_description: 'Marketing de médias sociaux pour votre marque'
+    social_media_description: 'Marketing de médias sociaux pour votre marque',
+    our_services: 'Unsere Leistungen',
+    corporate_videos: 'Imagefilme',
+    product_videos: 'Produktvideos',
+    event_coverage: 'Event-Dokumentation',
+    professional_quality: 'Professionelle Qualität',
+    brand_storytelling: 'Markenstorytelling',
+    emotional_connection: 'Emotionale Verbindung',
+    contact_for_info: 'Bei Fragen kontaktieren Sie uns bitte.'
   }
 } 
