@@ -12,23 +12,26 @@ let isConnected = false
 
 export async function connectDB() {
   if (isConnected) {
-    console.log('MongoDB is already connected')
     return
   }
 
   try {
-    await mongoose.connect(MONGODB_URI, {
-      serverSelectionTimeoutMS: 5000,
-      socketTimeoutMS: 45000,
-      connectTimeoutMS: 10000,
-      maxPoolSize: 10,
-      minPoolSize: 5,
-      retryWrites: true,
-      w: 'majority',
-      appName: 'Cluster0'
-    })
-    isConnected = true
-    console.log('MongoDB connected successfully')
+    if (process.env.NODE_ENV === 'production') {
+      await mongoose.connect(MONGODB_URI, {
+        serverSelectionTimeoutMS: 5000,
+        socketTimeoutMS: 45000,
+        connectTimeoutMS: 10000,
+        maxPoolSize: 10,
+        minPoolSize: 5,
+        retryWrites: true,
+        w: 'majority',
+        appName: 'Cluster0'
+      })
+      isConnected = true
+      console.log('MongoDB connected successfully')
+    } else {
+      console.log('Skipping MongoDB connection in development/build')
+    }
   } catch (error) {
     console.error('Error connecting to MongoDB:', error)
     throw error
