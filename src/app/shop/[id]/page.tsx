@@ -30,7 +30,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="relative h-[400px]">
+        <div className="relative h-[520px]">
           <Image
             src={product.image}
             alt={product.title}
