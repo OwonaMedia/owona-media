@@ -1,51 +1,35 @@
-import mongoose from 'mongoose'
+import { db } from './firebase';
+import { collection, getDocs, query, where } from 'firebase/firestore';
 
-const MONGODB_URI = process.env.MONGODB_URI as string
-
-if (!MONGODB_URI) {
-  throw new Error(
-    'Please define the MONGODB_URI environment variable inside .env.production'
-  )
-}
-
-let isConnected = false
-
-export async function connectDB() {
-  if (isConnected) {
-    return
-  }
-
+export async function getProducts() {
   try {
-    if (process.env.NODE_ENV === 'production') {
-      await mongoose.connect(MONGODB_URI, {
-        serverSelectionTimeoutMS: 5000,
-        socketTimeoutMS: 45000,
-        connectTimeoutMS: 10000,
-        maxPoolSize: 10,
-        minPoolSize: 5,
-        retryWrites: true,
-        w: 'majority',
-        appName: 'Cluster0'
-      })
-      isConnected = true
-      console.log('MongoDB connected successfully')
-    } else {
-      console.log('Skipping MongoDB connection in development/build')
-    }
+    const productsRef = collection(db, 'products');
+    const snapshot = await getDocs(productsRef);
+    return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
   } catch (error) {
-    console.error('Error connecting to MongoDB:', error)
-    throw error
+    console.error('Fehler beim Abrufen der Produkte:', error);
+    return [];
   }
 }
 
-export { connectDB as default }
-
-export async function dbConnect() {
+export async function getRecommendations() {
   try {
-    await connectDB()
-    console.log('Connected to MongoDB')
+    const recommendationsRef = collection(db, 'recommendations');
+    const snapshot = await getDocs(recommendationsRef);
+    return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
   } catch (error) {
-    console.error('Error connecting to MongoDB:', error)
-    throw error
+    console.error('Fehler beim Abrufen der Empfehlungen:', error);
+    return [];
+  }
+}
+
+export async function getBlogPosts() {
+  try {
+    const blogRef = collection(db, 'blog');
+    const snapshot = await getDocs(blogRef);
+    return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+  } catch (error) {
+    console.error('Fehler beim Abrufen der Blog-Posts:', error);
+    return [];
   }
 } 

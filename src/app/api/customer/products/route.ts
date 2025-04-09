@@ -1,9 +1,8 @@
 import { NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
-import { connectDB } from '@/lib/db'
-import User from '@/models/User'
-import Product from '@/models/Product'
+import { db } from '@/lib/firebase'
+import { collection, getDocs, query, where } from 'firebase/firestore'
 
 interface ProductId {
   _id: string
@@ -20,10 +19,6 @@ interface Purchase {
 
 export async function GET() {
   try {
-    // Verbinde mit der Datenbank
-    await connectDB()
-
-    // Hole die Session
     const session = await getServerSession(authOptions)
 
     if (!session?.user?.email) {
@@ -33,24 +28,20 @@ export async function GET() {
       )
     }
 
-    // Finde den Benutzer und seine gekauften Produkte
-    const user = await User.findOne({ email: session.user.email })
-      .populate('purchasedProducts.productId')
-      .exec()
+    const productsRef = collection(db, 'products')
+    const userProductsQuery = query(productsRef, where('userEmail', '==', session.user.email))
+    const snapshot = await getDocs(userProductsQuery)
+    
+    const products = snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }))
 
-    if (!user) {
-      return NextResponse.json(
-        { error: 'Benutzer nicht gefunden' },
-        { status: 404 }
-      )
-    }
-
-    const products = await Product.find({ userId: user._id })
     return NextResponse.json(products)
   } catch (error) {
     console.error('Fehler beim Abrufen der Produkte:', error)
     return NextResponse.json(
-      { error: 'Interner Serverfehler beim Abrufen der Produkte' },
+      { error: 'Fehler beim Abrufen der Produkte' },
       { status: 500 }
     )
   }

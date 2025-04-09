@@ -10,6 +10,7 @@ import { AuthProvider } from "@/context/AuthContext";
 import Notification from '@/components/Notification'
 import { Toaster } from 'react-hot-toast'
 import Script from 'next/script'
+import Analytics from '@/components/Analytics'
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -47,6 +48,7 @@ export default function RootLayout({
               <CookieBanner />
               <Notification />
               <Toaster position="bottom-right" />
+              <Analytics />
             </div>
           </LanguageProvider>
         </AuthProvider>
