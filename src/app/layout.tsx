@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import CookieBanner from "@/components/layout/CookieBanner";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { LanguageSelector } from "@/components/layout/LanguageSelector";
 import { AuthProvider } from "@/context/AuthContext";
@@ -45,7 +44,6 @@ export default function RootLayout({
                 {children}
               </main>
               <Footer />
-              <CookieBanner />
               <Notification />
               <Toaster position="bottom-right" />
               <Analytics />
