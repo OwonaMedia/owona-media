@@ -16,20 +16,62 @@ interface Post {
 export default function Blog() {
   const { t } = useLanguage()
   const [posts, setPosts] = useState<Post[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
+        setLoading(true)
         const response = await fetch('/api/blog')
+        if (!response.ok) {
+          throw new Error('Failed to fetch blog posts')
+        }
         const data = await response.json()
-        setPosts(data.posts)
+        setPosts(data.posts || [])
       } catch (error) {
         console.error('Error fetching blog posts:', error)
+        setError('Fehler beim Laden der Blog-Posts')
+      } finally {
+        setLoading(false)
       }
     }
 
     fetchPosts()
   }, [])
+
+  if (loading) {
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <h1 className="text-4xl font-bold mb-8">{t('blog')}</h1>
+        <div className="flex justify-center items-center h-64">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-amber-600"></div>
+        </div>
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <h1 className="text-4xl font-bold mb-8">{t('blog')}</h1>
+        <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
+          {error}
+        </div>
+      </div>
+    )
+  }
+
+  if (posts.length === 0) {
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <h1 className="text-4xl font-bold mb-8">{t('blog')}</h1>
+        <div className="text-center py-12">
+          <p className="text-gray-600">Keine Blog-Posts verfügbar</p>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="container mx-auto px-4 py-8">
