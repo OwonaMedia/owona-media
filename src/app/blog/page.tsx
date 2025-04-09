@@ -2,8 +2,7 @@
 
 import { useLanguage } from '@/context/LanguageContext'
 import { useEffect, useState } from 'react'
-import Head from 'next/head'
-import BlogPost from '@/models/BlogPost'
+import SEO from '@/components/SEO'
 
 interface Post {
   _id: string
@@ -70,24 +69,12 @@ export default function Blog() {
 
   return (
     <>
-      <Head>
-        <title>Blog | Owona Media - Digitale Marketing Insights</title>
-        <meta name="description" content="Entdecken Sie aktuelle Artikel und Insights zu digitalem Marketing, Social Media und Content Creation auf dem Owona Media Blog." />
-        <meta name="keywords" content="digital marketing, social media, content creation, blog, insights, owona media" />
-        <meta property="og:title" content="Blog | Owona Media" />
-        <meta property="og:description" content="Aktuelle Artikel und Insights zu digitalem Marketing, Social Media und Content Creation" />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://owona-media.vercel.app/blog" />
-        <meta property="og:image" content="https://owona-media.vercel.app/images/og-image.jpg" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Blog | Owona Media" />
-        <meta name="twitter:description" content="Aktuelle Artikel und Insights zu digitalem Marketing, Social Media und Content Creation" />
-        <meta name="twitter:image" content="https://owona-media.vercel.app/images/og-image.jpg" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-        />
-      </Head>
+      <SEO
+        title="Blog"
+        description="Entdecken Sie aktuelle Artikel und Insights zu digitalem Marketing, Social Media und Content Creation auf dem Owona Media Blog."
+        keywords="digital marketing, social media, content creation, blog, insights, owona media"
+        structuredData={structuredData}
+      />
 
       <div className="container mx-auto px-4 py-8">
         <h1 className="text-4xl font-bold mb-8">{t('blog')}</h1>
