@@ -39,9 +39,9 @@ export default function ProductPage({ params }: { params: { id: string } }) {
             priority
           />
         </div>
-        <div>
+        <div className="flex flex-col h-[800px]">
           <h1 className="text-3xl font-bold mb-4">{product.title}</h1>
-          <p className="text-lg mb-6">{product.description}</p>
+          <p className="text-lg mb-6 flex-grow">{product.description}</p>
           <a
             href={product.link}
             target="_blank"
