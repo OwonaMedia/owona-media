@@ -1,10 +1,10 @@
 'use client'
 
-import { createContext, useContext, useState, ReactNode } from 'react'
-import { Language } from '@/config/languages'
+import { createContext, useContext, useState, useEffect, ReactNode } from 'react'
 import { TranslationKey, translations } from '@/config/translations'
+import Cookies from 'js-cookie'
 
-type Language = 'de' | 'en'
+type Language = 'de' | 'en' | 'fr'
 
 interface LanguageContextType {
   language: Language
@@ -15,7 +15,24 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState<Language>('de')
+  const [language, setLanguageState] = useState<Language>('de')
+
+  useEffect(() => {
+    const storedLanguage = Cookies.get('NEXT_LOCALE') as Language
+    if (storedLanguage && (storedLanguage === 'de' || storedLanguage === 'en' || storedLanguage === 'fr')) {
+      setLanguageState(storedLanguage)
+    }
+  }, [])
+
+  const setLanguage = (newLanguage: Language) => {
+    setLanguageState(newLanguage)
+    Cookies.set('NEXT_LOCALE', newLanguage, {
+      path: '/',
+      expires: 365,
+      sameSite: 'lax',
+      secure: process.env.NODE_ENV === 'production'
+    })
+  }
 
   const t = (key: TranslationKey): string => {
     return translations[language][key]

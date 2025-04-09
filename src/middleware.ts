@@ -15,6 +15,15 @@ const RATE_LIMIT = {
 // IP-basierte Rate Limiting Map
 const ipRequests = new Map<string, { count: number; resetTime: number }>()
 
+const LANGUAGE_COOKIE = 'NEXT_LOCALE'
+const DEFAULT_LANGUAGE = 'de'
+const SUPPORTED_LANGUAGES = ['de', 'en', 'fr']
+
+// Länder-Codes für die unterstützten Sprachen
+const GERMAN_COUNTRIES = ['DE', 'AT', 'CH']
+const ENGLISH_COUNTRIES = ['US', 'GB', 'AU', 'CA', 'NZ']
+const FRENCH_COUNTRIES = ['FR', 'BE', 'LU', 'MC']
+
 export async function middleware(request: NextRequest) {
   // Überprüfe, ob die Route geschützt ist
   if (request.url.includes('/api/customer') || request.url.includes('/kundenbereich')) {
@@ -80,7 +89,43 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  return NextResponse.next()
+  // Wenn bereits eine Spracheinstellung existiert, diese verwenden
+  const existingLocale = request.cookies.get(LANGUAGE_COOKIE)
+  if (existingLocale) {
+    return NextResponse.next()
+  }
+
+  // IP-basierte Spracherkennung
+  const country = request.geo?.country || ''
+  let detectedLanguage = DEFAULT_LANGUAGE
+
+  if (ENGLISH_COUNTRIES.includes(country)) {
+    detectedLanguage = 'en'
+  } else if (FRENCH_COUNTRIES.includes(country)) {
+    detectedLanguage = 'fr'
+  } else if (GERMAN_COUNTRIES.includes(country)) {
+    detectedLanguage = 'de'
+  }
+
+  // Browser-Spracheinstellung als Fallback
+  const acceptLanguage = request.headers.get('accept-language')
+  if (!existingLocale && acceptLanguage) {
+    const browserLang = acceptLanguage.split(',')[0].split('-')[0].toLowerCase()
+    if (SUPPORTED_LANGUAGES.includes(browserLang)) {
+      detectedLanguage = browserLang
+    }
+  }
+
+  // Cookie setzen
+  const response = NextResponse.next()
+  response.cookies.set(LANGUAGE_COOKIE, detectedLanguage, {
+    path: '/',
+    maxAge: 60 * 60 * 24 * 365, // 1 Jahr
+    sameSite: 'lax',
+    secure: process.env.NODE_ENV === 'production'
+  })
+
+  return response
 }
 
 export const config = {

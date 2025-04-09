@@ -1,10 +1,9 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
+import Header from '@/components/layout/Header'
+import Footer from '@/components/layout/Footer'
 import { LanguageProvider } from '@/context/LanguageContext'
-import { LanguageSelector } from '@/components/layout/LanguageSelector'
 import { AuthProvider } from '@/context/AuthContext'
 import Notification from '@/components/Notification'
 import { Toaster } from 'react-hot-toast'
@@ -41,6 +40,9 @@ export default function RootLayout({
                 {children}
               </main>
               <Footer />
+              <Notification />
+              <Toaster position="bottom-right" />
+              <Analytics />
             </div>
           </AuthProvider>
         </LanguageProvider>
