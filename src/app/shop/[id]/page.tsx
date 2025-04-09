@@ -30,12 +30,12 @@ export default function ProductPage({ params }: { params: { id: string } }) {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="relative w-full h-[720px] bg-black rounded-lg overflow-hidden p-8">
+        <div className="relative w-full h-[800px] bg-black rounded-lg overflow-hidden p-12">
           <Image
             src={product.image}
             alt={product.title}
             fill
-            className="object-contain p-4"
+            className="object-contain p-8"
             priority
           />
         </div>
