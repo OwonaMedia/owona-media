@@ -1,5 +1,7 @@
 'use client'
 
+import Link from 'next/link'
+import Image from 'next/image'
 import { useLanguage } from '@/context/LanguageContext'
 import { useEffect, useState } from 'react'
 import SEO from '@/components/SEO'
@@ -13,8 +15,50 @@ interface Post {
   createdAt: string
 }
 
-export default function Blog() {
-  const { t } = useLanguage()
+const blogPosts = [
+  {
+    id: 'master-resell-rights',
+    title: {
+      de: 'Master Resell Rights: Der ultimative Guide für digitale Produkte',
+      en: 'Master Resell Rights: The Ultimate Guide for Digital Products'
+    },
+    description: {
+      de: 'Entdecken Sie, wie Sie mit Master Resell Rights passives Einkommen generieren können. Lernen Sie die besten Strategien für den Verkauf digitaler Produkte.',
+      en: 'Discover how to generate passive income with Master Resell Rights. Learn the best strategies for selling digital products.'
+    },
+    image: '/bilder/blog/master-resell-rights.jpg',
+    date: '2024-04-07'
+  },
+  {
+    id: 'faceless-marketing',
+    title: {
+      de: 'Faceless Marketing: Erfolgreich ohne Gesicht',
+      en: 'Faceless Marketing: Succeed Without Showing Your Face'
+    },
+    description: {
+      de: 'Erfahren Sie, wie Sie erfolgreich Marketing betreiben können, ohne Ihr Gesicht zu zeigen. Perfekt für Introvertierte und Privatsphäre-bewusste Unternehmer.',
+      en: 'Learn how to successfully market without showing your face. Perfect for introverts and privacy-conscious entrepreneurs.'
+    },
+    image: '/bilder/blog/faceless-marketing.jpg',
+    date: '2024-04-07'
+  },
+  {
+    id: 'canva-guide',
+    title: {
+      de: 'Canva für Anfänger: Der komplette Guide',
+      en: 'Canva for Beginners: The Complete Guide'
+    },
+    description: {
+      de: 'Meistern Sie Canva von Grund auf. Lernen Sie, wie Sie professionelle Designs erstellen, ohne Designer zu sein.',
+      en: 'Master Canva from scratch. Learn how to create professional designs without being a designer.'
+    },
+    image: '/bilder/blog/canva-guide.jpg',
+    date: '2024-04-07'
+  }
+]
+
+export default function BlogPage() {
+  const { t, language } = useLanguage()
   const [posts, setPosts] = useState<Post[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -98,28 +142,27 @@ export default function Blog() {
         )}
 
         {!loading && !error && posts.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {posts.map((post) => (
-              <article key={post._id} className="bg-white rounded-lg shadow-md overflow-hidden">
-                {post.image && (
-                  <img 
-                    src={post.image} 
-                    alt={post.title} 
-                    className="w-full h-48 object-cover"
-                    loading="lazy"
+              <Link 
+                href={`/blog/${post._id}`} 
+                key={post._id}
+                className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
+              >
+                <div className="relative h-48">
+                  <Image
+                    src={post.image || blogPosts.find(p => p.id === post._id)?.image || ''}
+                    alt={post.title}
+                    fill
+                    className="object-cover"
                   />
-                )}
+                </div>
                 <div className="p-6">
                   <h2 className="text-xl font-semibold mb-2">{post.title}</h2>
                   <p className="text-gray-600 mb-4">{post.content.substring(0, 150)}...</p>
-                  <div className="flex justify-between items-center">
-                    <time className="text-sm text-gray-500" dateTime={post.createdAt}>
-                      {new Date(post.createdAt).toLocaleDateString()}
-                    </time>
-                    <span className="text-sm text-gray-500">{post.author}</span>
-                  </div>
+                  <div className="text-sm text-gray-500">{new Date(post.createdAt).toLocaleDateString()}</div>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
         )}

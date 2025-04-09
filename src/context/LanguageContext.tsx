@@ -4,9 +4,11 @@ import { createContext, useContext, useState, ReactNode } from 'react'
 import { Language } from '@/config/languages'
 import { TranslationKey, translations } from '@/config/translations'
 
+type Language = 'de' | 'en'
+
 interface LanguageContextType {
   language: Language
-  setLanguage: (lang: Language) => void
+  setLanguage: (language: Language) => void
   t: (key: TranslationKey) => string
 }
 
