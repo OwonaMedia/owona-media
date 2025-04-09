@@ -54,6 +54,214 @@ const blogPosts = [
     },
     image: '/bilder/blog/canva-guide.jpg',
     date: '2024-04-07'
+  },
+  {
+    id: 'social-media-marketing',
+    title: {
+      de: 'Chancen des Social-Media-Marketings nutzen',
+      en: 'Leveraging Social Media Marketing Opportunities'
+    },
+    description: {
+      de: 'Entdecken Sie die vielfältigen Möglichkeiten des Social-Media-Marketings und wie Sie diese für Ihr Unternehmen nutzen können.',
+      en: 'Discover the diverse opportunities of social media marketing and how to leverage them for your business.'
+    },
+    image: '/bilder/blog/social-media-marketing.jpg',
+    date: '2024-04-07'
+  },
+  {
+    id: 'google-marketplace',
+    title: {
+      de: 'Der Google Marketplace im Jahr 2025',
+      en: 'The Google Marketplace in 2025'
+    },
+    description: {
+      de: 'Ein Blick in die Zukunft des Google Marketplaces und wie Sie sich darauf vorbereiten können.',
+      en: 'A look into the future of the Google Marketplace and how you can prepare for it.'
+    },
+    image: '/bilder/blog/google-marketplace.jpg',
+    date: '2024-04-07'
+  },
+  {
+    id: 'instagram-titles',
+    title: {
+      de: 'Der perfekte Titel für Instagram',
+      en: 'The Perfect Instagram Title'
+    },
+    description: {
+      de: 'Lernen Sie, wie Sie die perfekten Titel für Ihre Instagram-Posts erstellen, die Aufmerksamkeit erregen und Engagement generieren.',
+      en: 'Learn how to create perfect titles for your Instagram posts that grab attention and generate engagement.'
+    },
+    image: '/bilder/blog/instagram-titles.jpg',
+    date: '2024-04-07'
+  },
+  {
+    id: 'welcome-email',
+    title: {
+      de: 'Die Macht der Willkommen-E-Mail',
+      en: 'The Power of Welcome Emails'
+    },
+    description: {
+      de: 'Erfahren Sie, wie Sie Ihre Kunden von Beginn an mit der perfekten Willkommen-E-Mail begeistern können.',
+      en: 'Learn how to impress your customers from the start with the perfect welcome email.'
+    },
+    image: '/bilder/blog/welcome-email.jpg',
+    date: '2024-04-07'
+  },
+  {
+    id: 'email-marketing',
+    title: {
+      de: 'E-Mail-Marketing optimal einsetzen',
+      en: 'Optimizing Email Marketing'
+    },
+    description: {
+      de: 'Entdecken Sie die besten Strategien für effektives E-Mail-Marketing und wie Sie Ihre Kampagnen optimieren können.',
+      en: 'Discover the best strategies for effective email marketing and how to optimize your campaigns.'
+    },
+    image: '/bilder/blog/email-marketing.jpg',
+    date: '2024-04-07'
+  },
+  {
+    id: 'online-marketing',
+    title: {
+      de: 'Entdecke die Welt des Online-Marketings',
+      en: 'Discover the World of Online Marketing'
+    },
+    description: {
+      de: 'Ihr Schlüssel zum digitalen Erfolg: Ein umfassender Guide für erfolgreiches Online-Marketing.',
+      en: 'Your key to digital success: A comprehensive guide to successful online marketing.'
+    },
+    image: '/bilder/blog/online-marketing.jpg',
+    date: '2024-04-07'
+  },
+  {
+    id: 'facebook-marketing',
+    title: {
+      de: 'Facebook Marketing im Jahr 2025',
+      en: 'Facebook Marketing in 2025'
+    },
+    description: {
+      de: 'Ein Blick in die Zukunft des Facebook Marketings und wie Sie sich darauf vorbereiten können.',
+      en: 'A look into the future of Facebook marketing and how you can prepare for it.'
+    },
+    image: '/bilder/blog/facebook-marketing.jpg',
+    date: '2024-04-07'
+  },
+  {
+    id: 'handmade-videos',
+    title: {
+      de: 'Handgefilmte Videos: Der Schlüssel zu lebendigem Online-Content',
+      en: 'Handmade Videos: The Key to Engaging Online Content'
+    },
+    description: {
+      de: 'Lernen Sie, wie Sie mit handgefilmten Videos authentischen und ansprechenden Content erstellen können.',
+      en: 'Learn how to create authentic and engaging content with handmade videos.'
+    },
+    image: '/bilder/blog/handmade-videos.jpg',
+    date: '2024-04-07'
+  },
+  {
+    id: 'instagram-marketing',
+    title: {
+      de: 'Instagram-Marketing im Jahr 2025',
+      en: 'Instagram Marketing in 2025'
+    },
+    description: {
+      de: 'Ein Blick in die Zukunft des Instagram Marketings und wie Sie sich darauf vorbereiten können.',
+      en: 'A look into the future of Instagram marketing and how you can prepare for it.'
+    },
+    image: '/bilder/blog/instagram-marketing.jpg',
+    date: '2024-04-07'
+  },
+  {
+    id: 'pinterest-marketing',
+    title: {
+      de: 'Pinterest Marketing im Jahr 2025',
+      en: 'Pinterest Marketing in 2025'
+    },
+    description: {
+      de: 'Ein Blick in die Zukunft des Pinterest Marketings und wie Sie sich darauf vorbereiten können.',
+      en: 'A look into the future of Pinterest marketing and how you can prepare for it.'
+    },
+    image: '/bilder/blog/pinterest-marketing.jpg',
+    date: '2024-04-07'
+  },
+  {
+    id: 'social-media-seniors',
+    title: {
+      de: 'Soziale Medien für Senioren',
+      en: 'Social Media for Seniors'
+    },
+    description: {
+      de: 'Ein einfacher Einstieg in die digitale Welt für Senioren.',
+      en: 'An easy introduction to the digital world for seniors.'
+    },
+    image: '/bilder/blog/social-media-seniors.jpg',
+    date: '2024-04-07'
+  },
+  {
+    id: 'youtube-shorts',
+    title: {
+      de: 'Wie Sie Ihr Geschäft mit YouTube-Shorts 2025 ankurbeln können',
+      en: 'How to Boost Your Business with YouTube Shorts in 2025'
+    },
+    description: {
+      de: 'Entdecken Sie die Möglichkeiten von YouTube Shorts für Ihr Unternehmen im Jahr 2025.',
+      en: 'Discover the possibilities of YouTube Shorts for your business in 2025.'
+    },
+    image: '/bilder/blog/youtube-shorts.jpg',
+    date: '2024-04-07'
+  },
+  {
+    id: 'tiktok-marketing',
+    title: {
+      de: 'Wie Sie Ihr Unternehmen mit TikTok Marketing im Jahr 2025 zum Erfolg führen',
+      en: 'How to Lead Your Company to Success with TikTok Marketing in 2025'
+    },
+    description: {
+      de: 'Erfahren Sie, wie Sie TikTok Marketing für Ihr Unternehmen im Jahr 2025 optimal nutzen können.',
+      en: 'Learn how to optimally use TikTok marketing for your business in 2025.'
+    },
+    image: '/bilder/blog/tiktok-marketing.jpg',
+    date: '2024-04-07'
+  },
+  {
+    id: 'social-media-content',
+    title: {
+      de: 'Wie Social Media Inhalte Ihren Umsatz steigern können',
+      en: 'How Social Media Content Can Increase Your Revenue'
+    },
+    description: {
+      de: 'Entdecken Sie, wie Sie mit strategischem Social Media Content Ihren Umsatz steigern können.',
+      en: 'Discover how strategic social media content can increase your revenue.'
+    },
+    image: '/bilder/blog/social-media-content.jpg',
+    date: '2024-04-07'
+  },
+  {
+    id: 'online-shop',
+    title: {
+      de: 'Wie du deinen Online-Shop zum Erfolg führst',
+      en: 'How to Lead Your Online Shop to Success'
+    },
+    description: {
+      de: 'Praktische Tipps und Strategien für einen erfolgreichen Online-Shop.',
+      en: 'Practical tips and strategies for a successful online shop.'
+    },
+    image: '/bilder/blog/online-shop.jpg',
+    date: '2024-04-07'
+  },
+  {
+    id: 'reels-thumbnails',
+    title: {
+      de: 'Wie professionelle Titelbilder in Reels Ihre Verkäufe ankurbeln können',
+      en: 'How Professional Thumbnails in Reels Can Boost Your Sales'
+    },
+    description: {
+      de: 'Lernen Sie, wie Sie mit professionellen Titelbildern in Reels mehr Verkäufe generieren können.',
+      en: 'Learn how to generate more sales with professional thumbnails in Reels.'
+    },
+    image: '/bilder/blog/reels-thumbnails.jpg',
+    date: '2024-04-07'
   }
 ]
 
