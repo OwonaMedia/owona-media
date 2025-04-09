@@ -7,7 +7,7 @@ import Link from 'next/link'
 
 export default function ProductPage({ params }: { params: { id: string } }) {
   const { t } = useLanguage()
-  const product = products.find((p: { id: string }) => p.id === params.id)
+  const product = products.find((p) => p.id === params.id)
 
   if (!product) {
     return (
@@ -30,25 +30,32 @@ export default function ProductPage({ params }: { params: { id: string } }) {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div>
+        <div className="relative h-[400px]">
           <Image
             src={product.image}
-            alt={product.name}
-            width={600}
-            height={400}
-            className="rounded-lg shadow-lg"
+            alt={product.title}
+            fill
+            className="object-contain rounded-lg shadow-lg"
+            priority
           />
         </div>
         <div>
-          <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
+          <h1 className="text-3xl font-bold mb-4">{product.title}</h1>
           <p className="text-lg mb-6">{product.description}</p>
-          <p className="text-2xl font-bold mb-6">{product.price} €</p>
-          <Link
-            href={`/shop/checkout/${product.id}`}
-            className="bg-amber-600 text-white px-6 py-3 rounded-md hover:bg-amber-700 transition-colors"
+          <a
+            href={product.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block"
           >
-            Jetzt kaufen
-          </Link>
+            <Image
+              src="/images/payment/buy-now.png"
+              alt="Jetzt kaufen"
+              width={150}
+              height={40}
+              className="hover:opacity-90 transition-opacity"
+            />
+          </a>
         </div>
       </div>
     </div>
