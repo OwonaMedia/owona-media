@@ -1,215 +1,259 @@
 'use client'
 
+import { useLanguage } from '@/context/LanguageContext'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowDown } from 'lucide-react'
-import { useEffect, useState } from 'react'
-import { useLanguage } from '@/context/LanguageContext'
-import FeaturedProducts from '@/components/FeaturedProducts'
-import SEO from '@/components/SEO'
+import { motion } from 'framer-motion'
 
-const contentBlocks = [
-  {
-    title: 'Digital Marketing Guide',
-    description: 'Lernen Sie die Grundlagen des digitalen Marketings und wie Sie erfolgreich online präsent sein können.',
-    image: '/bilder/Howtodigitalmarketingfaceless.png',
-    product: 'Digital Marketing Guide',
-  },
-  {
-    title: 'Faceless Reels Guide',
-    description: 'Erstellen Sie ansprechende Reels ohne Gesicht - perfekt für introvertierte Content Creator.',
-    image: '/bilder/FacelessReelsGuide.png',
-    product: 'Faceless Reels Guide',
-  },
-  {
-    title: 'Canva für Anfänger',
-    description: 'Der perfekte Einstieg in die Welt des Grafikdesigns mit Canva.',
-    image: '/bilder/CanvafuerAnfaengerMiniKurs.png',
-    product: 'Canva Mini-Kurs',
-  },
-]
-
-export default function Home() {
-  const { t } = useLanguage()
-  const [activeSection, setActiveSection] = useState(0)
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = document.querySelectorAll('section')
-      const scrollPosition = window.scrollY + window.innerHeight / 2
-
-      sections.forEach((section, index) => {
-        const sectionTop = section.offsetTop
-        const sectionHeight = section.offsetHeight
-
-        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-          setActiveSection(index)
-        }
-      })
-    }
-
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Owona Media",
-    "url": "https://owona-media.vercel.app",
-    "logo": "https://owona-media.vercel.app/images/logo.png",
-    "description": "Professionelle digitale Marketing- und Content-Creation-Dienstleistungen",
-    "address": {
-      "@type": "PostalAddress",
-      "addressCountry": "DE"
+const content = {
+  de: {
+    hero: {
+      title: 'Digitale Produkte für Ihren Erfolg',
+      subtitle: 'Entdecken Sie hochwertige digitale Produkte und Ressourcen für Ihr Online-Business',
+      cta: 'Jetzt entdecken'
     },
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "contactType": "customer service",
-      "email": "info@owona.de"
+    categories: {
+      title: 'Kategorien',
+      items: [
+        {
+          title: 'Videos & Content',
+          description: 'Hochwertige Videoclips und Content für Ihre Projekte',
+          image: '/bilder/kategorien/videos.jpg',
+          link: '/shop?category=videos'
+        },
+        {
+          title: 'Marketing & Business',
+          description: 'Tools und Ressourcen für erfolgreiches Online-Marketing',
+          image: '/bilder/kategorien/marketing.jpg',
+          link: '/shop?category=marketing'
+        },
+        {
+          title: 'Bundles & Pakete',
+          description: 'Komplette Pakete für Ihren digitalen Erfolg',
+          image: '/bilder/kategorien/bundles.jpg',
+          link: '/shop?category=bundles'
+        }
+      ]
+    },
+    featured: {
+      title: 'Ausgewählte Produkte',
+      cta: 'Alle Produkte anzeigen'
+    }
+  },
+  en: {
+    hero: {
+      title: 'Digital Products for Your Success',
+      subtitle: 'Discover high-quality digital products and resources for your online business',
+      cta: 'Discover Now'
+    },
+    categories: {
+      title: 'Categories',
+      items: [
+        {
+          title: 'Videos & Content',
+          description: 'High-quality video clips and content for your projects',
+          image: '/bilder/kategorien/videos.jpg',
+          link: '/shop?category=videos'
+        },
+        {
+          title: 'Marketing & Business',
+          description: 'Tools and resources for successful online marketing',
+          image: '/bilder/kategorien/marketing.jpg',
+          link: '/shop?category=marketing'
+        },
+        {
+          title: 'Bundles & Packages',
+          description: 'Complete packages for your digital success',
+          image: '/bilder/kategorien/bundles.jpg',
+          link: '/shop?category=bundles'
+        }
+      ]
+    },
+    featured: {
+      title: 'Featured Products',
+      cta: 'View All Products'
     }
   }
+}
+
+const featuredProducts = [
+  {
+    id: 'master-resell-rights',
+    title: {
+      de: 'Master Resell Rights',
+      en: 'Master Resell Rights'
+    },
+    description: {
+      de: 'Der ultimative Guide für digitale Produkte und passives Einkommen.',
+      en: 'The ultimate guide for digital products and passive income.'
+    },
+    image: '/bilder/produkte/master-resell-rights.jpg',
+    link: 'https://go.Owona.de/'
+  },
+  {
+    id: 'new-york-videos',
+    title: {
+      de: 'New York - 273 Videos',
+      en: 'New York - 273 Videos'
+    },
+    description: {
+      de: 'Hochwertige Videoclips aus New York für Ihre Projekte.',
+      en: 'High-quality video clips from New York for your projects.'
+    },
+    image: '/bilder/produkte/new-york-videos.jpg',
+    link: 'https://go.Owona.de/NYVids'
+  },
+  {
+    id: 'digital-success',
+    title: {
+      de: 'Digital Success',
+      en: 'Digital Success'
+    },
+    description: {
+      de: 'Der komplette Guide für digitalen Erfolg.',
+      en: 'The complete guide for digital success.'
+    },
+    image: '/bilder/produkte/digital-success.jpg',
+    link: 'https://go.Owona.de/DigitalSuccess'
+  }
+]
+
+export default function HomePage() {
+  const { language } = useLanguage()
+  const langContent = content[language]
 
   return (
-    <>
-      <SEO
-        title="Startseite"
-        description="Owona Media bietet professionelle digitale Marketing- und Content-Creation-Dienstleistungen. Entdecken Sie unsere Services für Ihr Business."
-        keywords="digital marketing, content creation, video production, social media marketing, web design"
-        structuredData={structuredData}
-      />
-
-      <main className="min-h-screen bg-amber-50">
-        {/* Hero Section */}
-        <section className="relative h-[80vh] flex items-center justify-center">
-          <div className="absolute inset-0 z-0">
-            <Image
-              src="/images/placeholder-bg.jpg"
-              alt="Digital Marketing Background"
-              fill
-              className="object-cover"
-              priority
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/70" />
-          </div>
-          <div className="relative z-10 text-center text-white px-4">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">Digital Marketing Guide</h1>
-            <p className="text-xl md:text-2xl mb-8">Lernen Sie die Grundlagen des digitalen Marketings</p>
-            <Link href="/shop" className="bg-amber-600 text-white px-8 py-3 rounded-lg hover:bg-amber-700 transition-colors">
-              Jetzt entdecken
-            </Link>
-          </div>
-        </section>
-
-        {/* Featured Products Section */}
-        <FeaturedProducts />
-
-        {/* Categories Section */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-amber-900 mb-8 text-center">Kategorien</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8">
-              <Link href="/shop?category=Videos" className="group">
-                <div className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform group-hover:scale-105">
-                  <div className="relative h-48">
-                    <Image
-                      src="/bilder/produkte/new-york-videos.jpg"
-                      alt="Videos"
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <div className="p-4">
-                    <h3 className="text-xl font-semibold text-amber-900">Videos</h3>
-                  </div>
-                </div>
-              </Link>
-              <Link href="/shop?category=Kurse" className="group">
-                <div className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform group-hover:scale-105">
-                  <div className="relative h-48">
-                    <Image
-                      src="/bilder/produkte/canva-beginner.jpg"
-                      alt="Kurse"
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <div className="p-4">
-                    <h3 className="text-xl font-semibold text-amber-900">Kurse</h3>
-                  </div>
-                </div>
-              </Link>
-              <Link href="/shop?category=Business" className="group">
-                <div className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform group-hover:scale-105">
-                  <div className="relative h-48">
-                    <Image
-                      src="/bilder/produkte/master-resell-rights.jpg"
-                      alt="Business"
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <div className="p-4">
-                    <h3 className="text-xl font-semibold text-amber-900">Business</h3>
-                  </div>
-                </div>
-              </Link>
-              <Link href="/shop?category=Services" className="group">
-                <div className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform group-hover:scale-105">
-                  <div className="relative h-48">
-                    <div className="absolute inset-0 bg-amber-100 flex items-center justify-center">
-                      <div className="text-center p-4">
-                        <h4 className="text-sm font-medium text-amber-900 mb-2">Verfügbare Services:</h4>
-                        <ul className="text-sm text-amber-800">
-                          <li>• Imagefilmproduktion</li>
-                          <li>• Homepage Erstellung</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="p-4">
-                    <h3 className="text-xl font-semibold text-amber-900">Services</h3>
-                  </div>
-                </div>
-              </Link>
-              <Link href="/shop?category=eBooks" className="group">
-                <div className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform group-hover:scale-105">
-                  <div className="relative h-48">
-                    <div className="absolute inset-0 bg-amber-100 flex items-center justify-center">
-                      <div className="text-center p-4">
-                        <p className="text-amber-800">Neue eBooks folgen in Kürze</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="p-4">
-                    <h3 className="text-xl font-semibold text-amber-900">eBooks</h3>
-                  </div>
-                </div>
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="bg-amber-600 py-16">
-          <div className="container mx-auto px-4 text-center text-white">
-            <h2 className="text-3xl font-bold mb-4">Entdecken Sie unsere Produkte</h2>
-            <p className="text-xl mb-8">Starten Sie noch heute mit Ihrem digitalen Business</p>
-            <Link href="/shop" className="bg-white text-amber-600 px-8 py-3 rounded-lg hover:bg-amber-50 transition-colors">
-              Zum Shop
-            </Link>
-          </div>
-        </section>
-
-        <div className="fixed bottom-8 right-8">
-          <button
-            className="w-12 h-12 rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors"
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          >
-            <ArrowDown size={24} className="transform rotate-180" />
-          </button>
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <section className="relative h-[80vh] flex items-center justify-center bg-gradient-to-r from-amber-900 to-amber-700">
+        <div className="absolute inset-0">
+          <Image
+            src="/bilder/hero-bg.jpg"
+            alt="Hero Background"
+            fill
+            className="object-cover opacity-20"
+            priority
+          />
         </div>
-      </main>
-    </>
+        <div className="container mx-auto px-4 relative z-10 text-center">
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-5xl md:text-6xl font-bold text-white mb-6"
+          >
+            {langContent.hero.title}
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-xl md:text-2xl text-white/90 mb-8 max-w-2xl mx-auto"
+          >
+            {langContent.hero.subtitle}
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            <Link
+              href="/shop"
+              className="inline-block bg-white text-amber-900 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-amber-50 transition-colors"
+            >
+              {langContent.hero.cta}
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Categories Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12">
+            {langContent.categories.title}
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {langContent.categories.items.map((category, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.2 }}
+                viewport={{ once: true }}
+                className="group"
+              >
+                <Link href={category.link} className="block">
+                  <div className="relative h-64 mb-4 rounded-lg overflow-hidden">
+                    <Image
+                      src={category.image}
+                      alt={category.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2">{category.title}</h3>
+                  <p className="text-gray-600">{category.description}</p>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Products Section */}
+      <section className="py-20 bg-amber-50">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12">
+            {langContent.featured.title}
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {featuredProducts.map((product, index) => (
+              <motion.div
+                key={product.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.2 }}
+                viewport={{ once: true }}
+                className="bg-white rounded-lg shadow-md overflow-hidden group"
+              >
+                <div className="relative h-64">
+                  <Image
+                    src={product.image}
+                    alt={product.title[language]}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold mb-2">
+                    {product.title[language]}
+                  </h3>
+                  <p className="text-gray-600 mb-4">
+                    {product.description[language]}
+                  </p>
+                  <a
+                    href={product.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block bg-amber-600 text-white px-6 py-2 rounded-md hover:bg-amber-700 transition-colors"
+                  >
+                    {language === 'de' ? 'Jetzt kaufen' : 'Buy now'}
+                  </a>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+          <div className="text-center mt-12">
+            <Link
+              href="/shop"
+              className="inline-block bg-amber-600 text-white px-8 py-3 rounded-md hover:bg-amber-700 transition-colors"
+            >
+              {langContent.featured.cta}
+            </Link>
+          </div>
+        </div>
+      </section>
+    </div>
   )
 }

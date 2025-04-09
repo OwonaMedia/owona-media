@@ -3,227 +3,268 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useLanguage } from '@/context/LanguageContext'
+import { motion } from 'framer-motion'
+import { Search, Filter } from 'lucide-react'
+import { useState } from 'react'
+
+const content = {
+  de: {
+    title: 'Shop',
+    searchPlaceholder: 'Produkte durchsuchen...',
+    categories: {
+      all: 'Alle Kategorien',
+      videos: 'Videos & Content',
+      marketing: 'Marketing & Business',
+      bundles: 'Bundles & Pakete'
+    },
+    noResults: 'Keine Produkte gefunden',
+    buyNow: 'Jetzt kaufen'
+  },
+  en: {
+    title: 'Shop',
+    searchPlaceholder: 'Search products...',
+    categories: {
+      all: 'All Categories',
+      videos: 'Videos & Content',
+      marketing: 'Marketing & Business',
+      bundles: 'Bundles & Packages'
+    },
+    noResults: 'No products found',
+    buyNow: 'Buy now'
+  }
+}
 
 const products = [
   {
     id: 'master-resell-rights',
-    title: 'Master Resell Rights',
-    description: 'Erhalten Sie die exklusiven Rechte, um dieses digitale Produkt zu verkaufen und weiterzuverkaufen. Perfekt für Ihren eigenen Online-Shop.',
+    title: {
+      de: 'Master Resell Rights',
+      en: 'Master Resell Rights'
+    },
+    description: {
+      de: 'Der ultimative Guide für digitale Produkte und passives Einkommen.',
+      en: 'The ultimate guide for digital products and passive income.'
+    },
     image: '/bilder/produkte/master-resell-rights.jpg',
     link: 'https://go.Owona.de/',
-    category: 'Business'
+    category: 'marketing'
   },
   {
     id: 'new-york-videos',
-    title: 'New York - 273 Videos',
-    description: 'Eine umfangreiche Sammlung von 273 hochwertigen Videos aus New York City. Perfekt für Content Creator und Social Media Marketing.',
+    title: {
+      de: 'New York - 273 Videos',
+      en: 'New York - 273 Videos'
+    },
+    description: {
+      de: 'Hochwertige Videoclips aus New York für Ihre Projekte.',
+      en: 'High-quality video clips from New York for your projects.'
+    },
     image: '/bilder/produkte/new-york-videos.jpg',
     link: 'https://go.Owona.de/NYVids',
-    category: 'Videos'
+    category: 'videos'
   },
   {
-    id: 'caribbean-bundle',
-    title: 'The Caribbean Bundle',
-    description: 'Das komplette Caribbean Bundle mit allen 3 Volumes. Über 300 Videos von traumhaften Stränden und tropischen Landschaften.',
-    image: '/bilder/produkte/caribbean-bundle.jpg',
-    link: 'https://go.Owona.de/CarAll',
-    category: 'Videos'
-  },
-  {
-    id: 'caribbean-vol3',
-    title: 'The Caribbean Vol 3',
-    description: 'Der dritte Teil unserer Caribbean Serie mit 154 exklusiven Videos von paradiesischen Stränden und kristallklarem Wasser.',
-    image: '/bilder/produkte/caribbean-vol3.jpg',
-    link: 'https://go.Owona.de/CarVid3_',
-    category: 'Videos'
-  },
-  {
-    id: 'caribbean-vol2',
-    title: 'The Caribbean Vol 2',
-    description: 'Der zweite Teil unserer Caribbean Serie mit 110 hochwertigen Videos von tropischen Stränden und Meereslandschaften.',
-    image: '/bilder/produkte/caribbean-vol2.jpg',
-    link: 'https://go.Owona.de/CaribVid2',
-    category: 'Videos'
-  },
-  {
-    id: 'caribbean-vol1',
-    title: 'The Caribbean',
-    description: 'Der erste Teil unserer Caribbean Serie mit 90 professionellen Videos von traumhaften Karibikstränden.',
-    image: '/bilder/produkte/caribbean.jpg',
-    link: 'https://go.Owona.de/CariVid',
-    category: 'Videos'
-  },
-  {
-    id: 'sunsetlover',
-    title: 'Sunsetlover',
-    description: 'Eine Sammlung der schönsten Sonnenuntergänge aus der ganzen Welt. Perfekt für entspannende Videos und Social Media Content.',
-    image: '/bilder/produkte/sunsetlover.jpg',
-    link: 'https://go.Owona.de/SunVid',
-    category: 'Videos'
-  },
-  {
-    id: 'canva-beginner',
-    title: 'Canva für Anfänger',
-    description: 'Lernen Sie die Grundlagen von Canva kennen und erstellen Sie professionelle Designs für Ihre Social Media Kanäle.',
-    image: '/bilder/produkte/canva-beginner.jpg',
-    link: 'https://go.Owona.de/CanMi',
-    category: 'Kurse'
+    id: 'caribbean-videos',
+    title: {
+      de: 'Karibik - 200 Videos',
+      en: 'Caribbean - 200 Videos'
+    },
+    description: {
+      de: 'Atemberaubende Videos aus der Karibik für Ihre Projekte.',
+      en: 'Breathtaking videos from the Caribbean for your projects.'
+    },
+    image: '/bilder/produkte/caribbean-videos.jpg',
+    link: 'https://go.Owona.de/CaribbeanVids',
+    category: 'videos'
   },
   {
     id: 'digital-success',
-    title: 'Digital Success Mastery',
-    description: 'Ein umfassender Kurs, der Ihnen zeigt, wie Sie erfolgreich digitale Produkte erstellen und vermarkten können.',
+    title: {
+      de: 'Digital Success',
+      en: 'Digital Success'
+    },
+    description: {
+      de: 'Der komplette Guide für digitalen Erfolg.',
+      en: 'The complete guide for digital success.'
+    },
     image: '/bilder/produkte/digital-success.jpg',
-    link: 'https://go.Owona.de/Canvfo',
-    category: 'Kurse'
+    link: 'https://go.Owona.de/DigitalSuccess',
+    category: 'marketing'
   },
   {
-    id: 'instagram-growth',
-    title: 'The Instagram Growth Blueprint',
-    description: 'Ein detaillierter 3-Stunden-Videokurs, der Ihnen zeigt, wie Sie Ihr Instagram-Konto erfolgreich wachsen lassen können.',
-    image: '/bilder/produkte/instagram-growth.jpg',
-    link: 'https://go.Owona.de/InsVidC',
-    category: 'Kurse'
+    id: 'online-marketing-bundle',
+    title: {
+      de: 'Online Marketing Bundle',
+      en: 'Online Marketing Bundle'
+    },
+    description: {
+      de: 'Alles, was Sie für erfolgreiches Online Marketing benötigen.',
+      en: 'Everything you need for successful online marketing.'
+    },
+    image: '/bilder/produkte/online-marketing-bundle.jpg',
+    link: 'https://go.Owona.de/OnlineMarketing',
+    category: 'bundles'
   },
   {
-    id: 'lifetime-access',
-    title: 'Lifetime Access Stock Vid',
-    description: 'Erhalten Sie lebenslangen Zugang zu einer umfangreichen Bibliothek von Stock Videos für Ihre Projekte.',
-    image: '/bilder/produkte/lifetime-access.jpg',
-    link: 'https://go.Owona.de/LtVid',
-    category: 'Videos'
+    id: 'social-media-bundle',
+    title: {
+      de: 'Social Media Bundle',
+      en: 'Social Media Bundle'
+    },
+    description: {
+      de: 'Der komplette Guide für erfolgreiches Social Media Marketing.',
+      en: 'The complete guide for successful social media marketing.'
+    },
+    image: '/bilder/produkte/social-media-bundle.jpg',
+    link: 'https://go.Owona.de/SocialMedia',
+    category: 'bundles'
   },
   {
-    id: 'focus-workbook',
-    title: 'One month of focus workbook',
-    description: 'Ein praktisches Workbook, das Ihnen hilft, Ihre Ziele zu definieren und zu visualisieren.',
-    image: '/bilder/produkte/focus-workbook.jpg',
-    link: 'https://go.Owona.de/facwbo',
-    category: 'Business'
+    id: 'content-creation-bundle',
+    title: {
+      de: 'Content Creation Bundle',
+      en: 'Content Creation Bundle'
+    },
+    description: {
+      de: 'Alles, was Sie für erfolgreiche Content Creation benötigen.',
+      en: 'Everything you need for successful content creation.'
+    },
+    image: '/bilder/produkte/content-creation-bundle.jpg',
+    link: 'https://go.Owona.de/ContentCreation',
+    category: 'bundles'
   },
   {
-    id: 'faceless-reels',
-    title: 'Faceless Reels',
-    description: 'Ein komplettes Paket für Faceless Reels mit Hooks, Covers und einem 30-Tage-Plan.',
-    image: '/bilder/produkte/faceless-reels.jpg',
-    link: 'https://go.Owona.de/FacRee',
-    category: 'Social Media'
+    id: 'video-marketing-bundle',
+    title: {
+      de: 'Video Marketing Bundle',
+      en: 'Video Marketing Bundle'
+    },
+    description: {
+      de: 'Der komplette Guide für erfolgreiches Video Marketing.',
+      en: 'The complete guide for successful video marketing.'
+    },
+    image: '/bilder/produkte/video-marketing-bundle.jpg',
+    link: 'https://go.Owona.de/VideoMarketing',
+    category: 'bundles'
   },
   {
-    id: 'canva-2024',
-    title: 'Canva for beginner',
-    description: 'Ein aktueller Kurs, der Ihnen zeigt, wie Sie Canva im Jahr 2024 optimal nutzen können.',
-    image: '/bilder/produkte/canva-2024.jpg',
-    link: 'https://go.Owona.de/CanvB',
-    category: 'Kurse'
-  },
-  {
-    id: 'faceless-marketing',
-    title: 'How to Faceless Marketing',
-    description: 'Lernen Sie, wie Sie eine erfolgreiche Faceless Marke auf Instagram aufbauen können.',
-    image: '/bilder/produkte/faceless-marketing.jpg',
-    link: 'https://go.Owona.de/How2FM',
-    category: 'Social Media'
-  },
-  {
-    id: 'instagram-strategy',
-    title: 'Complete Strategy for Instagram Growth',
-    description: 'Eine komplette Strategie für das Wachstum Ihres Instagram-Kontos mit MRR und PLR Rechten.',
-    image: '/bilder/produkte/instagram-strategy.jpg',
-    link: 'https://go.Owona.de/InstaStr',
-    category: 'Social Media'
-  },
-  {
-    id: 'faceless-planner',
-    title: 'Faceless Account Planner',
-    description: 'Ein praktischer Planner für die Planung Ihrer Faceless Content Strategie.',
-    image: '/bilder/produkte/faceless-planner.jpg',
-    link: 'https://go.Owona.de/FacLPlan',
-    category: 'Social Media'
-  },
-  {
-    id: 'faceless-stories',
-    title: 'Faceless Stories that sell',
-    description: 'Lernen Sie, wie Sie verkaufsstarke Faceless Stories erstellen können.',
-    image: '/bilder/produkte/faceless-stories.jpg',
-    link: 'https://go.Owona.de/FacLSt',
-    category: 'Social Media'
-  },
-  {
-    id: 'content-planner',
-    title: 'Plan',
-    description: 'Ein einfacher und effektiver Content Planner für Ihre Social Media Kanäle.',
-    image: '/bilder/produkte/content-planner.jpg',
-    link: 'https://go.Owona.de/PlaOrga',
-    category: 'Social Media'
-  },
-  {
-    id: 'social-media-content',
-    title: '3 Months of Social Media Content',
-    description: 'Drei Monate vorgefertigter Social Media Content mit MRR und PLR Rechten.',
-    image: '/bilder/produkte/social-media-content.jpg',
-    link: 'https://go.Owona.de/3MoCon',
-    category: 'Social Media'
-  },
-  {
-    id: 'dsm-starter',
-    title: 'DSM Starter',
-    description: 'Das Starter Package für Digital Success Mastery mit allen Grundlagen für den Einstieg.',
-    image: '/bilder/produkte/dsm-starter.jpg',
-    link: 'https://go.Owona.de/StarDSM',
-    category: 'Business'
+    id: 'email-marketing-bundle',
+    title: {
+      de: 'Email Marketing Bundle',
+      en: 'Email Marketing Bundle'
+    },
+    description: {
+      de: 'Alles, was Sie für erfolgreiches Email Marketing benötigen.',
+      en: 'Everything you need for successful email marketing.'
+    },
+    image: '/bilder/produkte/email-marketing-bundle.jpg',
+    link: 'https://go.Owona.de/EmailMarketing',
+    category: 'bundles'
   }
 ]
 
-export default function Shop() {
-  const { t } = useLanguage()
+export default function ShopPage() {
+  const { language } = useLanguage()
+  const [searchQuery, setSearchQuery] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState('all')
+  const langContent = content[language]
+
+  const filteredProducts = products.filter(product => {
+    const matchesSearch = 
+      product.title[language].toLowerCase().includes(searchQuery.toLowerCase()) ||
+      product.description[language].toLowerCase().includes(searchQuery.toLowerCase())
+    
+    const matchesCategory = selectedCategory === 'all' || product.category === selectedCategory
+    
+    return matchesSearch && matchesCategory
+  })
 
   return (
-    <div className="min-h-screen bg-amber-50 pt-16">
-      <div className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold text-amber-900 mb-8">Shop</h1>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {products.map((product) => (
-            <div key={product.id} className="bg-white rounded-lg shadow-md overflow-hidden">
-              <Link href={`/shop/${product.id}`} className="block">
-                <div className="relative h-96 overflow-hidden rounded-lg">
+    <div className="min-h-screen bg-amber-50">
+      <div className="container mx-auto px-4 py-12">
+        <motion.h1 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-4xl font-bold mb-8 text-center"
+        >
+          {langContent.title}
+        </motion.h1>
+
+        {/* Search and Filter Section */}
+        <div className="mb-12">
+          <div className="flex flex-col md:flex-row gap-4 items-center justify-center">
+            <div className="relative w-full md:w-96">
+              <input
+                type="text"
+                placeholder={langContent.searchPlaceholder}
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full px-4 py-2 pl-10 rounded-lg border border-amber-200 focus:outline-none focus:ring-2 focus:ring-amber-500"
+              />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-amber-400" />
+            </div>
+            
+            <div className="flex gap-2">
+              {Object.entries(langContent.categories).map(([key, value]) => (
+                <button
+                  key={key}
+                  onClick={() => setSelectedCategory(key)}
+                  className={`px-4 py-2 rounded-lg transition-colors ${
+                    selectedCategory === key
+                      ? 'bg-amber-600 text-white'
+                      : 'bg-white text-amber-900 hover:bg-amber-100'
+                  }`}
+                >
+                  {value}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Products Grid */}
+        {filteredProducts.length > 0 ? (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
+            {filteredProducts.map((product, index) => (
+              <motion.div
+                key={product.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="bg-white rounded-lg shadow-md overflow-hidden group hover:shadow-lg transition-shadow"
+              >
+                <div className="relative h-64">
                   <Image
                     src={product.image}
-                    alt={product.title}
+                    alt={product.title[language]}
                     fill
-                    className="object-contain p-4"
-                    priority
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
-                <div className="p-4">
-                  <h2 className="text-xl font-semibold text-amber-900 mb-2 hover:text-amber-700">
-                    {product.title}
-                  </h2>
-                  <p className="text-gray-600 mb-4">{product.description}</p>
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-amber-600">{product.category}</span>
-                    <a
-                      href={product.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <Image
-                        src="/images/payment/buy-now.png"
-                        alt="Jetzt kaufen"
-                        width={150}
-                        height={40}
-                        className="hover:opacity-90 transition-opacity"
-                      />
-                    </a>
-                  </div>
+                <div className="p-6">
+                  <h2 className="text-xl font-semibold mb-2">{product.title[language]}</h2>
+                  <p className="text-gray-600 mb-4">{product.description[language]}</p>
+                  <a
+                    href={product.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block w-full text-center bg-amber-600 text-white px-6 py-2 rounded-md hover:bg-amber-700 transition-colors"
+                  >
+                    {langContent.buyNow}
+                  </a>
                 </div>
-              </Link>
-            </div>
-          ))}
-        </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        ) : (
+          <div className="text-center py-12">
+            <p className="text-xl text-gray-600">{langContent.noResults}</p>
+          </div>
+        )}
       </div>
     </div>
   )

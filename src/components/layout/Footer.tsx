@@ -138,6 +138,16 @@ export default function Footer() {
 
         <div className="border-t border-amber-200 mt-8 pt-8 text-center text-sm">
           <p>&copy; {new Date().getFullYear()} Owona Media Agency. Alle Rechte vorbehalten.</p>
+          <div className="mt-4">
+            <a href="https://logo.haendlerbund.de/show.php?uuid=08c494a3-c43f-11ef-a43e-0242ac130003-2079508148" target="_blank" rel="noopener noreferrer">
+              <img 
+                src="https://logo.haendlerbund.de/logo.php?uuid=08c494a3-c43f-11ef-a43e-0242ac130003-2079508148&size=120&variant=2" 
+                title="Händlerbund Mitglied"
+                alt="Mitglied im Händlerbund"
+                className="mx-2 my-2"
+              />
+            </a>
+          </div>
         </div>
       </div>
     </footer>

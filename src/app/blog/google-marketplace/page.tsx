@@ -5,26 +5,26 @@ import { useLanguage } from '@/context/LanguageContext'
 const content = {
   de: {
     title: 'Der Google Marketplace im Jahr 2025',
-    introduction: 'Der Google Marketplace entwickelt sich ständig weiter und bietet Unternehmen neue Möglichkeiten. In diesem Artikel werfen wir einen Blick in die Zukunft und zeigen Ihnen, wie Sie sich darauf vorbereiten können.',
+    introduction: 'Der Google Marketplace entwickelt sich ständig weiter. In diesem Artikel erfahren Sie, welche Trends und Möglichkeiten sich für Unternehmen im Jahr 2025 ergeben werden.',
     sections: [
       {
-        title: 'Die Entwicklung des Google Marketplaces',
-        content: 'Der Google Marketplace hat sich von einer einfachen Suchmaschine zu einem umfassenden Ökosystem entwickelt. Erfahren Sie, wie sich die Plattform in den letzten Jahren verändert hat und welche Trends sich abzeichnen.'
+        title: 'Die Entwicklung des Google Marketplace',
+        content: 'Von einer einfachen Suchmaschine zu einem umfassenden Ökosystem - der Google Marketplace hat sich zu einem zentralen Hub für digitale Geschäfte entwickelt.'
       },
       {
         title: 'Neue Funktionen und Möglichkeiten',
-        content: 'Entdecken Sie die neuesten Funktionen des Google Marketplaces und wie Sie diese für Ihr Unternehmen nutzen können. Von erweiterten Suchfunktionen bis hin zu neuen Werbeformaten.'
+        content: 'Entdecken Sie die neuesten Funktionen des Google Marketplace: Erweiterte Suchfunktionen, KI-gestützte Empfehlungen und verbesserte Integration mit anderen Google-Diensten.'
       },
       {
-        title: 'Strategien für 2025',
-        content: 'Lernen Sie, wie Sie Ihre Marketingstrategie an die zukünftigen Entwicklungen des Google Marketplaces anpassen können. Mit den richtigen Vorbereitungen sind Sie für die Zukunft gewappnet.'
+        title: 'Strategien für die Zukunft',
+        content: 'Lernen Sie, wie Sie Ihre Marketingstrategien an die zukünftigen Entwicklungen anpassen können, um im Google Marketplace erfolgreich zu sein.'
       }
     ],
-    conclusion: 'Der Google Marketplace wird auch 2025 eine zentrale Rolle im digitalen Marketing spielen. Mit den richtigen Strategien und Vorbereitungen können Sie die neuen Möglichkeiten optimal nutzen.',
+    conclusion: 'Der Google Marketplace wird auch 2025 eine zentrale Rolle im digitalen Marketing spielen. Unternehmen, die die neuen Möglichkeiten nutzen, können sich einen entscheidenden Wettbewerbsvorteil verschaffen.',
     relatedProducts: [
       {
         title: 'Digital Marketing Guide',
-        description: 'Der komplette Guide für erfolgreiches Digital Marketing.',
+        description: 'Der umfassende Guide für erfolgreiches Digital Marketing.',
         link: '/shop/digital-marketing-guide'
       },
       {
@@ -36,26 +36,26 @@ const content = {
   },
   en: {
     title: 'The Google Marketplace in 2025',
-    introduction: 'The Google Marketplace is constantly evolving and offering new opportunities for businesses. In this article, we take a look into the future and show you how to prepare for it.',
+    introduction: 'The Google Marketplace is constantly evolving. In this article, you will learn about the trends and opportunities that will emerge for businesses in 2025.',
     sections: [
       {
         title: 'The Evolution of the Google Marketplace',
-        content: 'The Google Marketplace has evolved from a simple search engine to a comprehensive ecosystem. Learn how the platform has changed in recent years and what trends are emerging.'
+        content: 'From a simple search engine to a comprehensive ecosystem - the Google Marketplace has evolved into a central hub for digital business.'
       },
       {
         title: 'New Features and Opportunities',
-        content: 'Discover the latest features of the Google Marketplace and how you can use them for your business. From advanced search functions to new advertising formats.'
+        content: 'Discover the latest features of the Google Marketplace: Advanced search functions, AI-powered recommendations, and improved integration with other Google services.'
       },
       {
-        title: 'Strategies for 2025',
-        content: 'Learn how to adapt your marketing strategy to the future developments of the Google Marketplace. With the right preparations, you are ready for the future.'
+        title: 'Strategies for the Future',
+        content: 'Learn how to adapt your marketing strategies to future developments to succeed in the Google Marketplace.'
       }
     ],
-    conclusion: 'The Google Marketplace will continue to play a central role in digital marketing in 2025. With the right strategies and preparations, you can optimally leverage the new opportunities.',
+    conclusion: 'The Google Marketplace will continue to play a central role in digital marketing in 2025. Companies that leverage the new opportunities can gain a decisive competitive advantage.',
     relatedProducts: [
       {
         title: 'Digital Marketing Guide',
-        description: 'The complete guide for successful digital marketing.',
+        description: 'The comprehensive guide for successful digital marketing.',
         link: '/shop/digital-marketing-guide'
       },
       {
