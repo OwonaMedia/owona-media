@@ -1,4 +1,41 @@
-export const blogPosts = [
+// TypeScript-Modul-Deklaration
+declare module '@/data/blogPosts' {
+  export interface BlogPost {
+    id: string;
+    title: {
+      de: string;
+      en: string;
+    };
+    description: {
+      de: string;
+      en: string;
+    };
+    image: string;
+    date: string;
+    category: string;
+  }
+
+  export const blogPosts: BlogPost[];
+}
+
+// TypeScript-Interface für BlogPosts
+export interface BlogPost {
+  id: string;
+  title: {
+    de: string;
+    en: string;
+  };
+  description: {
+    de: string;
+    en: string;
+  };
+  image: string;
+  date: string;
+  category: string;
+}
+
+// Die Blog-Posts-Daten
+export const blogPosts: BlogPost[] = [
   {
     id: 'welcome-email',
     title: {
